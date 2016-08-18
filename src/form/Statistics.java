@@ -11,11 +11,17 @@ public class Statistics extends HttpServlet {
     static final String TEMPLATE = "<html>" +
             "<head><title>Statisticts</title></head>" +
             "<body>" +
-            "<h1>Statistics about answers:" +
-            "<h2>Map: %d</h2>" +
-            "<h2>Queue: %d</h2>" +
-            "<h2>List: %d</h2>" +
-            "<h2>Set: %d</h2>" +
+            "<h1>Statistics about answers:</h1>" +
+            "<h2>Which interfaces extend a Collection interface?</h2>" +
+            "<h3>Map: %d</h3>" +
+            "<h3>Queue: %d</h3>" +
+            "<h3>List: %d</h3>" +
+            "<h3>Set: %d</h3>\n\n" +
+
+            "<h2>Can the main method be declared as final?</h2>" +
+            "<h3>Yes, it can: %d</h3>" +
+            "<h3>No, it can't: %d</h3>\n\n" +
+
             "<form action=\"/\" method=\"post\">\n" +
             "    <input type=\"submit\" value=\"Return to main page\"/>\n" +
             "</form>" +
@@ -26,12 +32,15 @@ public class Statistics extends HttpServlet {
     private int listCounter = 0;
     private int setCounter = 0;
 
+    private int yesCounter = 0;
+    private int noCounter = 0;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String[] values = req.getParameterValues("check");
 
         if (values != null) {
-            for (String value : req.getParameterValues("check")) {
+            for (String value : values) {
                 if (value.equalsIgnoreCase("map")) {
                     mapCounter++;
                 } else if (value.equalsIgnoreCase("queue")) {
@@ -43,6 +52,21 @@ public class Statistics extends HttpServlet {
                 }
             }
         }
-        resp.getWriter().println(String.format(TEMPLATE, mapCounter, queueCounter, listCounter, setCounter));
+
+        values = req.getParameterValues("mainMethod");
+
+        if (values != null) {
+            for (String value : values) {
+                if (value.equalsIgnoreCase("yes")) {
+                    yesCounter++;
+                } else if (value.equalsIgnoreCase("no")) {
+                    noCounter++;
+                }
+            }
+        }
+
+        resp.getWriter().println(String.format(TEMPLATE,
+                mapCounter, queueCounter, listCounter, setCounter,
+                yesCounter,noCounter));
     }
 }
