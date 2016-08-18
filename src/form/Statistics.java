@@ -30,7 +30,7 @@ public class Statistics extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String[] values = req.getParameterValues("check");
 
-        if (values.length != 0) {
+        if (values != null) {
             for (String value : req.getParameterValues("check")) {
                 if (value.equalsIgnoreCase("map")) {
                     mapCounter++;
