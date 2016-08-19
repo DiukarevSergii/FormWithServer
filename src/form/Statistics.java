@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Statistics extends HttpServlet {
 
@@ -27,13 +28,13 @@ public class Statistics extends HttpServlet {
             "</form>" +
             "</body></html>";
 
-    private int mapCounter = 0;
-    private int queueCounter = 0;
-    private int listCounter = 0;
-    private int setCounter = 0;
+    private AtomicInteger mapCounter = new AtomicInteger(0);
+    private AtomicInteger queueCounter = new AtomicInteger(0);
+    private AtomicInteger listCounter = new AtomicInteger(0);
+    private AtomicInteger setCounter = new AtomicInteger(0);
 
-    private int yesCounter = 0;
-    private int noCounter = 0;
+    private AtomicInteger yesCounter = new AtomicInteger(0);
+    private AtomicInteger noCounter = new AtomicInteger(0);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,13 +43,13 @@ public class Statistics extends HttpServlet {
         if (values != null) {
             for (String value : values) {
                 if (value.equalsIgnoreCase("map")) {
-                    mapCounter++;
+                    mapCounter.getAndIncrement();
                 } else if (value.equalsIgnoreCase("queue")) {
-                    queueCounter++;
+                    queueCounter.getAndIncrement();
                 } else if (value.equalsIgnoreCase("list")) {
-                    listCounter++;
+                    listCounter.getAndIncrement();
                 } else if (value.equalsIgnoreCase("set")) {
-                    setCounter++;
+                    setCounter.getAndIncrement();
                 }
             }
         }
@@ -58,15 +59,15 @@ public class Statistics extends HttpServlet {
         if (values != null) {
             for (String value : values) {
                 if (value.equalsIgnoreCase("yes")) {
-                    yesCounter++;
+                    yesCounter.getAndIncrement();
                 } else if (value.equalsIgnoreCase("no")) {
-                    noCounter++;
+                    noCounter.getAndIncrement();
                 }
             }
         }
 
         resp.getWriter().println(String.format(TEMPLATE,
-                mapCounter, queueCounter, listCounter, setCounter,
-                yesCounter,noCounter));
+                mapCounter.intValue(), queueCounter.intValue(), listCounter.intValue(), setCounter.intValue(),
+                yesCounter.intValue(),noCounter.intValue()));
     }
 }
