@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    background-image: url("background.jpg");
+    background-size: cover;
+}
+
+h1 {
+    font-size: 80px;
+    font-family: Courier, Verdana, monospace;
+    color: #3F046F;
+    text-align: center;
+    text-shadow:
+            -0   -4px 0   #FAF200,
+            0   -4px 0   #FAF200,
+            -0    4px 0   #FAF200,
+            0    4px 0   #FAF200,
+            -4px -0   0   #FAF200,
+            4px -0   0   #FAF200,
+            -4px  0   0   #FAF200,
+            4px  0   0   #FAF200,
+            -1px -4px 0   #FAF200,
+            1px -4px 0   #FAF200,
+            -1px  4px 0   #FAF200,
+            1px  4px 0   #FAF200,
+            -4px -1px 0   #FAF200,
+            4px -1px 0   #FAF200,
+            -4px  1px 0   #FAF200,
+            4px  1px 0   #FAF200,
+            -2px -4px 0   #FAF200,
+            2px -4px 0   #FAF200,
+            -2px  4px 0   #FAF200,
+            2px  4px 0   #FAF200,
+            -4px -2px 0   #FAF200,
+            4px -2px 0   #FAF200,
+            -4px  2px 0   #FAF200,
+            4px  2px 0   #FAF200,
+            -3px -4px 0   #FAF200,
+            3px -4px 0   #FAF200,
+            -3px  4px 0   #FAF200,
+            3px  4px 0   #FAF200,
+            -4px -3px 0   #FAF200,
+            4px -3px 0   #FAF200,
+            -4px  3px 0   #FAF200,
+            4px  3px 0   #FAF200,
+            -4px -4px 0   #FAF200,
+            4px -4px 0   #FAF200,
+            -4px  4px 0   #FAF200,
+            4px  4px 0   #FAF200,
+            -4px -4px 0   #FAF200,
+            4px -4px 0   #FAF200,
+            -4px  4px 0   #FAF200,
+            4px  4px 0   #FAF200;
+}
+
+.form {
+    position: absolute;
+    left: 2%;
+    top: 15%;
+}
+
+h2 {
+    font-size: 32px;
+    font-family: Courier, Verdana, sans-serif;
+    color: #582781;
+}
+
+h4 {
+    font-size: 16px;
+    font-family: Courier, Verdana, sans-serif;
+    color: #4C57D8;
+}
+
+h5 {
+    font-size: 15px;
+    font-family: Courier, Verdana, sans-serif;
+    color: #2F3584;
+}
+
+p {
+    font-size: 15px;
+    font-family: Courier, Verdana, sans-serif;
+    color: #081073;
+}
+
+

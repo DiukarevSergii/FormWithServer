@@ -4,29 +4,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Statistics extends HttpServlet {
-
-    static final String TEMPLATE = "<html>" +
-            "<head><title>Statisticts</title></head>" +
-            "<body>" +
-            "<h1>Statistics about answers:</h1>" +
-            "<h2>Which interfaces extend a Collection interface?</h2>" +
-            "<h3>Map: %d</h3>" +
-            "<h3>Queue: %d</h3>" +
-            "<h3>List: %d</h3>" +
-            "<h3>Set: %d</h3>\n\n" +
-
-            "<h2>Can the main method be declared as final?</h2>" +
-            "<h3>Yes, it can: %d</h3>" +
-            "<h3>No, it can't: %d</h3>\n\n" +
-
-            "<form action=\"/\" method=\"post\">\n" +
-            "    <input type=\"submit\" value=\"Return to main page\"/>\n" +
-            "</form>" +
-            "</body></html>";
 
     private AtomicInteger mapCounter = new AtomicInteger(0);
     private AtomicInteger queueCounter = new AtomicInteger(0);
@@ -53,7 +34,6 @@ public class Statistics extends HttpServlet {
                 }
             }
         }
-
         values = req.getParameterValues("mainMethod");
 
         if (values != null) {
@@ -65,9 +45,25 @@ public class Statistics extends HttpServlet {
                 }
             }
         }
-
-        resp.getWriter().println(String.format(TEMPLATE,
+        resp.getWriter().println(String.format(getTemplate(),
                 mapCounter.intValue(), queueCounter.intValue(), listCounter.intValue(), setCounter.intValue(),
-                yesCounter.intValue(),noCounter.intValue()));
+                yesCounter.intValue(), noCounter.intValue()));
+    }
+
+    private String getTemplate() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(
+                "D:\\JAVA\\MainWorkspace\\FormWithServer\\web\\statistics.html")))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
     }
 }
