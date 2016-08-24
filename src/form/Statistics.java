@@ -54,7 +54,7 @@ public class Statistics extends HttpServlet {
         StringBuilder stringBuilder = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(new File(
-                "D:\\JAVA\\MainWorkspace\\FormWithServer\\web\\statistics.html")))) {
+                "D:\\Program Files\\Java\\MainWorkspace\\FormWithServer\\web\\statistics.html")))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);

@@ -6,11 +6,11 @@ body {
     background-size: cover;
 }
 
-h1 {
+.header {
     font-size: 80px;
-    font-family: Courier, Verdana, monospace;
+    margin-top: 0;
+    font-family: Arial, Courier, Verdana, monospace;
     color: #3F046F;
-    text-align: center;
     text-shadow:
             -0   -4px 0   #FAF200,
             0   -4px 0   #FAF200,
@@ -57,7 +57,7 @@ h1 {
 .form {
     position: absolute;
     left: 2%;
-    top: 15%;
+    top: 12%;
 }
 
 h2 {

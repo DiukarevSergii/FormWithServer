@@ -13,4 +13,13 @@
         <url-pattern>/statistics</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Mainform</servlet-name>
+        <servlet-class>form.Authorization</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Mainform</servlet-name>
+        <url-pattern>/mainform</url-pattern>
+    </servlet-mapping>
+
 </web-app>
